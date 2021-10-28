@@ -4,31 +4,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1.0f ;
-
+    public float speed = 1.0f;
+    public float jumpforce = 1.0f;
 
     Rigidbody2D rigidbody;
-    
-    void Start()
+
+    public void Start()
     {
-         rigidbody = GetComponent<Rigidbody2D>();
+          rigidbody = GetComponent<Rigidbody2D>();
     }
-  
-    void Update()
+
+    public void Update()
     {
-        Vector2 f = new Vector2(0, 0);
-
-        if (Input.GetKey(KeyCode.D))
+        Vector2 f = new Vector2(0,0);
+        if(Input.GetKey(KeyCode.D))
         {
-            f = new Vector2(speed, 0);
+           f = new Vector2(speed,0);
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if(Input.GetKey(KeyCode.A))
         {
-            f = new Vector2(-speed, 0);
+           f = new Vector2(-speed,0);
         }
-
-        
-        rigidbody.AddForce(f);
-
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+           rigidbody.AddForce(new Vector2(0, jumpforce),ForceMode2D.Impulse);
+        }
+       
+       rigidbody.AddForce(f);
     }
+
 }
