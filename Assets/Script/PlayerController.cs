@@ -7,9 +7,24 @@ public class PlayerController : MonoBehaviour
     public float speed = 1.0f;
     public float jumpforce = 1.0f;
 
+
+   // [SerializeField] private float speed = 1.0f;
+    [SerializeField] private int score = 0;
+
     Rigidbody2D rigidbody;
 
-    public void Start()
+    public void AddScore()
+    {
+        score = score + 1;
+
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void start()
     {
           rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -27,10 +42,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-           rigidbody.AddForce(new Vector2(0, jumpforce),ForceMode2D.Impulse);
+           GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpforce),ForceMode2D.Impulse);
         }
        
-       rigidbody.AddForce(f);
+       GetComponent<Rigidbody2D>().AddForce(f);
     }
 
 }
